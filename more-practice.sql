@@ -33,19 +33,19 @@ SELECT brand_id FROM brands WHERE name='Chevrolet';
 SELECT brand_id FROM brands WHERE name='Subaru';
 
 \d models
+
 INSERT INTO models (name, brand_id, year)
-VALUES ('Subaru', 'sub', 2015);
---INSERT 0 1
+VALUES ('Malibu', 'che', 2015);
+
 INSERT INTO models (name, brand_id, year)
-VALUES ('Chevrolet Malibu', 'che', 2015);
---INSERT 0 1
+VALUES ('Outback', 'sub', 2015);
+
 SELECT * FROM models WHERE name='Subaru';
 -- model_id | year | brand_id |  name  
 ----------+------+----------+--------
 --       47 | 2015 | sub      | Subaru
 --(1 row)
 
-UPDATE models SET name='Subaru Outback' WHERE name='Subaru';  --fixed mistake!
 
 
 -- Create an Awards Table
@@ -75,7 +75,7 @@ winner_id INTEGER REFERENCES models);
 
 INSERT INTO awards (name, year, winner_id)
 VALUES ('IIHS Safety Award', 2015, (SELECT model_id FROM models
-WHERE name='Chevrolet Malibu' AND year='2015'));
+WHERE name='Malibu' AND year='2015'));
 --SELECT * FROM awards;
 --  id |       name        | year | winner_id 
 -- ----+-------------------+------+-----------
@@ -84,7 +84,7 @@ WHERE name='Chevrolet Malibu' AND year='2015'));
 
 INSERT INTO awards (name, year, winner_id)
 VALUES ('IIHS Safety Award', 2015, (SELECT model_id FROM models
-WHERE name='Subaru Outback' AND year='2015'));
+WHERE name='Outback' AND year='2015'));
 
 INSERT INTO awards(name, year) VALUES ('Best in Class', 2015);
 
